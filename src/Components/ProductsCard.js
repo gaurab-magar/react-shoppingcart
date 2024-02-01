@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCart } from '../Context/CartContext';
 export const ProductsCard = ({product}) => {
 
-  const {addToCart} = useCart();
+  const {addToCart,removeFromCart,cartList} = useCart();
   const {image,name,id} = product;
+  const [isInCart , setIsInCart] = useState(false);
 
+  useEffect(()=>{
+    const productIsInCart  = cartList.find(cartItem => cartItem.id === id);
+    if(productIsInCart){
+      setIsInCart(true)
+    }else{
+      setIsInCart(false)
+    }
+  },[cartList,id])
 
   return (
     <div className='col-md-4'>
@@ -16,7 +25,7 @@ export const ProductsCard = ({product}) => {
           <h5 className='card-title text-center my-3'>{name}</h5>
           <div className='m-2 d-flex justify-content-between align-items-center'>
             <p className='fw-bold mb-0'>Price: {id}lei</p>
-            <button onClick={() => addToCart(product)} className='btn btn-primary px-4 rounded-3'>ADD To Card</button>
+            {isInCart ? (<button onClick={() => removeFromCart(product)} className='btn btn-danger px-4 rounded-3'>REMOVE</button>) : <button onClick={() => addToCart(product)} className='btn btn-primary px-4 rounded-3'>ADD To Card</button>}
           </div>
         </div>
       </div>      

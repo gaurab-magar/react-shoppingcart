@@ -19,7 +19,7 @@ export const Home = ({title}) => {
       id:2
     },
     {
-      name:'ashika',
+      name:'bobil',
       image:img_3,
       id:3
     },

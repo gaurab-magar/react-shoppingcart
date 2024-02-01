@@ -8,8 +8,6 @@ export const CartReducer = (state, action) => {
         case 'UPDATE_TOTAL':
             return {...state, total: payload.total};
         default:
-            throw new Error(" NO CASE FOUND IN THE CART-REDUCER ")
-        
-        
+            throw new Error(" NO CASE FOUND IN THE CART-REDUCER ");
     }
 }
